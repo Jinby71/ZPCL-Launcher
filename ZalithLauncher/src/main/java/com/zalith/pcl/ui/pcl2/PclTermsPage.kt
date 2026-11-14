@@ -131,7 +131,11 @@ private fun PclTermsContent(onAccept: () -> Unit) {
                 horizontalArrangement = Arrangement.spacedBy(10.dp),
             ) {
                 Image(
-                    painter = painterResource(R.mipmap.ic_launcher),
+                    // 必须用 PNG 版 logo：`R.mipmap.ic_launcher` 在 Android 8+ 是
+                    // `<adaptive-icon>` XML，Compose 的 `painterResource` 不认这种 drawable，
+                    // 会抛 IllegalArgumentException（Only VectorDrawables and rasterized
+                    // asset types are supported）—— 启动即崩就是它。
+                    painter = painterResource(R.drawable.ic_launcher_logo),
                     contentDescription = null,
                     modifier = Modifier.size(22.dp),
                 )
