@@ -14,6 +14,17 @@ plugins {
 }
 
 val zalithPackageName = "com.zalith.pcl"
+/**
+ * 安装标识（applicationId）与源码包名解耦。
+ *
+ * 源码包/namespace 保持 `com.zalith.pcl`（878 个文件的 import、R 类、manifest 里的全限定
+ * 类名都指向它，改这个等于重写工程）；真正决定「应用在系统里叫什么」的是 applicationId，
+ * 它改成 `com.zpcl.launcher` 之后，包名里不再出现旧名字。
+ *
+ * 代价（改过一次就回不去）：新包是一个**全新应用**，旧版本的数据（MMKV、实例、登录态、
+ * 外部 files 目录）不会跟过来，也不能覆盖升级 —— 老用户必须先卸载再装。
+ */
+val appIdName = "com.zpcl.launcher"
 val launcherAPPName = project.findProperty("launcher_app_name") as? String ?: error("The \"launcher_app_name\" property is not set in gradle.properties.")
 val launcherName = project.findProperty("launcher_name") as? String ?: error("The \"launcher_name\" property is not set in gradle.properties.")
 val launcherShortName = project.findProperty("launcher_short_name") as? String ?: error("The \"launcher_short_name\" property is not set in gradle.properties.")
@@ -77,7 +88,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = zalithPackageName
+        applicationId = appIdName
         minSdk = 26
         targetSdk = 34
         versionCode = launcherVersionCode
