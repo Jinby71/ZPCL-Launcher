@@ -55,6 +55,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -319,6 +320,8 @@ fun PclSetupLaunchPage() {
 /** 渲染器 / Vulkan 驱动 / 图形 API / 分辨率。 */
 @Composable
 private fun PclRenderingCard() {
+    val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     val rendererOptions = remember { PclSettings.rendererOptions() }
     // 默认渲染器 = `Renderers` 列表第一个，也就是「没选过」时真正生效的那个。
     // 以前这里有一项叫「自动选择」（存空串），名字听着像「按设备挑」，
@@ -463,6 +466,37 @@ private fun PclRenderingCard() {
                             PclHintHost.push("已切换音频缓冲，下次启动游戏生效。", PclHintTheme.Green)
                         },
                     )
+                }
+            }
+            // MobileGlues 是独立 APK 插件：没装的时候它连「渲染器」下拉里都不会出现，
+            // 首次启动那一次询问又只弹一次（点过「暂不」就再也不弹），所以这里常驻一个入口。
+            if (!PclMobileGluesDownload.isInstalled(context)) {
+                Spacer(Modifier.height(6.dp))
+                SetupRow("MobileGlues 渲染器") {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        val downloadState = PclMobileGluesDownload.state
+                        PclText(
+                            text = when (downloadState) {
+                                is PclMobileGluesState.Downloading ->
+                                    if (downloadState.total > 0L) {
+                                        "下载中 ${downloadState.downloaded * 100 / downloadState.total}%"
+                                    } else {
+                                        "下载中…"
+                                    }
+                                is PclMobileGluesState.Ready -> "已下载，待安装"
+                                is PclMobileGluesState.Failed -> "下载失败"
+                                else -> "未安装"
+                            },
+                            modifier = Modifier.weight(1f),
+                        )
+                        PclButton(
+                            text = if (PclMobileGluesDownload.isRunning) "后台运行" else "后台下载",
+                            onClick = { PclMobileGluesDownload.start(context, scope) },
+                        )
+                    }
                 }
             }
             Spacer(Modifier.height(4.dp))

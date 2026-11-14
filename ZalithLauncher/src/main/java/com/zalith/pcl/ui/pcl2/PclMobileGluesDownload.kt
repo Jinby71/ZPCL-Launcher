@@ -51,6 +51,9 @@ sealed interface PclMobileGluesState {
  */
 object PclMobileGluesDownload {
 
+    /** MobileGlues 插件的包名（渲染器列表里出现它的前提）。 */
+    const val PACKAGE = "com.fcl.plugin.mobileglues"
+
     private const val API = "https://api.github.com/repos/MobileGL-Dev/MobileGlues-release/releases/latest"
     private const val DIR_NAME = "mobileglues"
     private const val FILE_NAME = "MobileGlues-latest.apk"
@@ -63,6 +66,12 @@ object PclMobileGluesDownload {
     private var pending: File? = null
 
     val isRunning: Boolean get() = job?.isActive == true
+
+    /** 设备上是否已安装 MobileGlues 插件。 */
+    fun isInstalled(context: Context): Boolean = runCatching {
+        context.packageManager.getPackageInfo(PACKAGE, 0)
+        true
+    }.getOrDefault(false)
 
     /** 开始（或重试）下载。已经在下载时重复调用会被忽略。 */
     fun start(context: Context, scope: CoroutineScope) {

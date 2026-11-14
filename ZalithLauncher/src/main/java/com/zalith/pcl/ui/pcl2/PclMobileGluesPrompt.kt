@@ -31,15 +31,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import com.zalith.pcl.ui.pcl2.components.PclConfirmDialog
 
-private const val MOBILE_GLUES_PACKAGE = "com.fcl.plugin.mobileglues"
 private const val MOBILE_GLUES_RELEASES =
     "https://github.com/MobileGL-Dev/MobileGlues-release/releases"
 
-private fun isPackageInstalled(context: Context, packageName: String): Boolean =
-    runCatching {
-        context.packageManager.getPackageInfo(packageName, 0)
-        true
-    }.getOrDefault(false)
+private fun isPackageInstalled(context: Context): Boolean =
+    PclMobileGluesDownload.isInstalled(context)
 
 private fun openReleasesPage(context: Context) {
     runCatching {
@@ -68,7 +64,7 @@ fun PclMobileGluesPromptHost() {
     LaunchedEffect(Unit) {
         val prefs = context.getSharedPreferences("pcl2.mobileglues", Context.MODE_PRIVATE)
         if (prefs.getBoolean("prompted", false)) return@LaunchedEffect
-        if (isPackageInstalled(context, MOBILE_GLUES_PACKAGE)) return@LaunchedEffect
+        if (isPackageInstalled(context)) return@LaunchedEffect
         promptVisible = true
     }
 
