@@ -12,6 +12,7 @@ package com.zalith.pcl.ui.pcl2
 import android.app.Activity
 import android.os.SystemClock
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,6 +23,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
@@ -32,13 +34,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.zalith.pcl.R
 import com.zalith.pcl.setting.launcherMMKV
 import com.zalith.pcl.ui.pcl2.components.PclButton
 import com.zalith.pcl.ui.pcl2.components.PclColorState
 import com.zalith.pcl.ui.pcl2.components.PclText
+import com.zalith.pcl.ui.pcl2.theme.PclDimens
 import com.zalith.pcl.ui.pcl2.theme.PclPalettes
 import com.zalith.pcl.ui.pcl2.theme.PclTheme
 import com.zalith.pcl.ui.pcl2.theme.pclPalette
@@ -110,19 +116,32 @@ private fun PclTermsContent(onAccept: () -> Unit) {
     }
 
     Column(modifier = Modifier.fillMaxSize().background(p.bg1)) {
-        // ---- 标题栏
+        // ---- 标题栏：跟主界面同一套配方（三段渐变 + 应用图标），不再是纯色通栏
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(p.color1)
-                .padding(horizontal = 22.dp, vertical = 12.dp),
+                .height(PclDimens.titleBarHeight)
+                .background(Brush.horizontalGradient(p.titleBarGradient)),
         ) {
-            PclText(
-                text = "ZPCL Launcher · 使用条款与项目说明",
-                color = Color.White,
-                fontSize = 16,
-                bold = true,
-            )
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 18.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(10.dp),
+            ) {
+                Image(
+                    painter = painterResource(R.mipmap.ic_launcher),
+                    contentDescription = null,
+                    modifier = Modifier.size(22.dp),
+                )
+                PclText(text = "ZPCL Launcher", color = Color.White, fontSize = 16, bold = true)
+                PclText(
+                    text = "使用条款与项目说明",
+                    color = Color.White.copy(alpha = 0.72f),
+                    fontSize = 12,
+                )
+            }
         }
 
         // ---- 正文（唯一可滚动区域）
