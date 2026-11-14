@@ -162,7 +162,6 @@ export JAVA_HOME=/path/to/jdk17
 | `…/game/plugin/` | 插件识别与安装（以 `assets/zplugin/plugin.json` 为识别依据） |
 | `docs/PLUGIN_GUIDE.md` | 插件开发指南 |
 | `docs/THIRD_PARTY.md` | 第三方组件与许可清单 |
-| `release/` | 各版本的发布说明（与应用内更新文案同源） |
 | `latest_version_md.json` | 应用内「检查更新」读取的版本清单 |
 | `CardGrid/` `ColorPicker/` `InputMap/` `LayerController/` `LWJGL/` `Terracotta/` | 渲染、输入、联机等子模块 |
 | `.github/workflows/` | CI：编译校验与推送检查（不含打包上传） |
@@ -178,8 +177,7 @@ export JAVA_HOME=/path/to/jdk17
    —— **versionCode 必须递增**，否则已安装的设备无法覆盖升级；两条产线都要改
 2. 同步改 `latest_version_md.json` 的 `version` / `code`，并在 `default_body` 里写这一版的说明
    （应用内「检查更新」读的就是它）
-3. 在 `release/<版本>.md` 记一份同源说明，便于回看
-4. 需要打标签时：`git tag -a v<版本> -m "ZPCL Launcher <版本>" && git push origin main --tags`
+3. 需要打标签时：`git tag -a v<版本> -m "ZPCL Launcher <版本>" && git push origin main --tags`
    —— 标签只标记源码节点，不触发任何上传安装包的流水线
 
 `launcher_name` 与 `CLIENT_TOKEN_SEED` 属于登录与数据目录的标识，**不要修改**。

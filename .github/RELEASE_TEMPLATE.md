@@ -20,19 +20,8 @@ versionCode 只增不减；`launcher_name` 与 `CLIENT_TOKEN_SEED` 不要动。
 ## 2. 写说明
 
 正文以 `latest_version_md.json` 的 `default_body.markdown` 为准（应用内「检查更新」显示的就是它），
-再生成一份同源归档到 `release/<版本>.md`：
-
-```bash
-python - <<'PY'
-import io, json
-d = json.load(io.open("latest_version_md.json", encoding="utf-8"))
-body = (d.get("default_body") or {}).get("markdown", "").strip()
-head = ("# {v}\n\n**versionCode** `{c}` · **包名** `com.zalith.pcl` · **minSdk** 26 · **targetSdk** 34\n"
-        "**名称** ZPCL Launcher · **非官方修改版，与 Zalith Launcher 官方无关联**\n\n---\n\n").format(
-    v=d["version"], c=d["code"])
-io.open("release/%s.md" % d["version"], "w", encoding="utf-8", newline="\n").write(head + body + "\n")
-PY
-```
+正文以 `latest_version_md.json` 的 `default_body.markdown` 为准（应用内「检查更新」显示的就是它），
+不再单独维护发布说明文件。
 
 ## 3. 提交并推源码
 
