@@ -54,9 +54,8 @@ fun PclMobileGluesPromptHost() {
     if (visible) {
         PclConfirmDialog(
             title = "未检测到 MobileGlues 渲染器",
-            content = "MobileGlues 是独立 APK 渲染器插件，启动器不能把它的原生渲染库直接打包进来。\n\n" +
-                "安装官方插件后，它才会出现在「设置 → 控制设置 → 渲染器」列表里。" +
-                "是否现在前往官方发布页下载安装？",
+            content = "MobileGlues 是独立的渲染器插件，需要单独安装。\n" +
+                "安装后可在「设置 → 控制设置 → 渲染器」中选择。是否前往下载？",
             confirmText = "前往下载",
             dismissText = "暂不",
             onConfirm = {

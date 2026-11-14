@@ -32,6 +32,10 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.lifecycleScope
 import com.zalith.pcl.components.jre.RuntimeProvisioner
@@ -41,6 +45,8 @@ import com.zalith.pcl.game.renderer.Renderers
 import com.zalith.pcl.ui.base.BaseAppCompatActivity
 import com.zalith.pcl.ui.pcl2.PclHintHost
 import com.zalith.pcl.ui.pcl2.PclMainScreen
+import com.zalith.pcl.ui.pcl2.PclTermsScreen
+import com.zalith.pcl.ui.pcl2.pclTermsAccepted
 import com.zalith.pcl.ui.pcl2.components.PclHintTheme
 import com.zalith.pcl.ui.pcl2.data.PclImportBridge
 import com.zalith.pcl.viewmodel.EventViewModel
@@ -140,7 +146,14 @@ class Pcl2Activity : BaseAppCompatActivity() {
             //     padding，那块区域没人画背景 → 露出窗口底色 → 上下两条黑边。
             //   · `displayCutout` —— 黑边没了，但刘海那一侧仍被让开一条。
             // 用户要的是「我管你刘海屏什么的全部强制全屏」，所以三档全不要。
-            PclMainScreen(modifier = Modifier.fillMaxSize())
+            // 首次启动先过条款页：必须滚到末尾、停留满 10 秒才能点「同意」。
+            // 同意结果写进 MMKV，之后不再出现；条款内容改版时把 TERMS_VERSION 加一即可重新弹。
+            var termsAccepted by remember { mutableStateOf(pclTermsAccepted()) }
+            if (termsAccepted) {
+                PclMainScreen(modifier = Modifier.fillMaxSize())
+            } else {
+                PclTermsScreen(onAccept = { termsAccepted = true })
+            }
         }
     }
 

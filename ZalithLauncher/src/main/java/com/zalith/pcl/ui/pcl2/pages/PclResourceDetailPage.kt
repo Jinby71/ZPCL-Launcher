@@ -572,7 +572,7 @@ private fun PclResourceDetail(
                 append(" 项必装前置资源，会随它一起下载并装进同一个版本：\n\n")
                 listed.forEach { append("·  ").append(it).append('\n') }
                 append("\n装完若没有生效，先确认前置的版本、加载器和游戏版本是否一致。")
-                if (names == null) append("\n\n（前置名称还在获取中，「继续下载」不受影响）")
+                if (names == null) append("\n（名称加载中，不影响继续下载）")
             },
             confirmText = "继续下载",
             // 先把状态清掉再往下走：按钮回调之外，退出动画结束时 onDismiss 还会被调一次，

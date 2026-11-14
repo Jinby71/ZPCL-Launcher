@@ -259,8 +259,7 @@ fun PclUpgradeHost() {
         is PclLauncherUpdateState.Failed -> {
             PclConfirmDialog(
                 title = "更新下载失败",
-                content = "${update.version} · ${update.archText}\n\n${update.message}\n\n" +
-                    "网络不稳时重试通常就好了；也可以点「取消」后到 GitHub Releases 页手动下载。",
+                content = "${update.version} · ${update.archText}\n\n${update.message}",
                 confirmText = "重试",
                 dismissText = "取消",
                 danger = true,
@@ -272,8 +271,8 @@ fun PclUpgradeHost() {
         is PclLauncherUpdateState.NeedPermission -> {
             PclConfirmDialog(
                 title = "需要安装权限",
-                content = "安装包已经下载好了（${update.version} · ${update.archText}）。\n\n" +
-                    "系统要求先允许本应用「安装未知应用」，授权后会自动继续安装。",
+                content = "安装包已下载（${update.version} · ${update.archText}）。\n" +
+                    "系统需要「安装未知应用」权限，授权后将自动继续。",
                 confirmText = "去授权",
                 dismissText = "取消",
                 onConfirm = { PclLauncherUpdate.openInstallSettings(context) },

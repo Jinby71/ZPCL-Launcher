@@ -255,8 +255,8 @@ internal fun PclInstanceSchematicPage(version: Version) {
             {
                 PclEmptyState(
                     title = "您尚未安装投影 Mod",
-                    content = "这个实例里没有检测到 Litematica、WorldEdit、Schematica 或 Axiom。\n" +
-                            "投影原理图由它们保存到 schematics 文件夹 —— 先装一个投影 Mod 再回来。",
+                    content = "未检测到 Litematica、WorldEdit、Schematica 或 Axiom。\n" +
+                            "投影原理图由它们保存到 schematics 文件夹，请先安装一个投影 Mod。",
                     modifier = Modifier.padding(40.dp),
                     buttonText = "下载 Mod",
                     onButtonClick = { nav.go(PclSection.Download, 1) },

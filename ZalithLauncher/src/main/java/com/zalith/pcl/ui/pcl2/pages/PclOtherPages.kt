@@ -335,8 +335,7 @@ fun PclOtherAboutPage() {
                                     onChecked = { data ->
                                         notice = when {
                                             data == null ->
-                                                "获取更新失败，请检查网络后重试。\n\n" +
-                                                    "（如果你在中国大陆，GitHub 的接口经常连不上，换个时间段再试通常就好了。）"
+                                                "获取更新失败，请检查网络后重试。"
                                             BuildConfig.VERSION_CODE >= data.code ->
                                                 "当前已是最新版本 ${BuildConfig.VERSION_NAME}（${BuildConfig.VERSION_CODE}）。"
                                             // 有新版本：operation 已由 ViewModel 设好，交给 PclUpgradeHost 弹框
@@ -346,10 +345,10 @@ fun PclOtherAboutPage() {
                                 )
                             }
                             if (finished == null) {
-                                notice = "检查更新超时了，请检查网络后重试。"
+                                notice = "检查更新超时，请检查网络后重试。"
                             }
                         } catch (_: TooFrequentOperationException) {
-                            notice = "检查太频繁了，请等几秒再试。"
+                            notice = "操作过于频繁，请稍后再试。"
                         } catch (_: Exception) {
                             notice = "获取更新失败，请检查网络后重试。"
                         } finally {

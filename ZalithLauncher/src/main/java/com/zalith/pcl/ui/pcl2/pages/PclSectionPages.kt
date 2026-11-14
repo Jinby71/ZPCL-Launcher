@@ -2739,8 +2739,7 @@ internal fun startModpackImport(
  */
 internal fun modpackImportErrorText(th: Throwable): String = when (th) {
     is DownloadFailedException ->
-        "安装这个整合包需要的文件没能全部下载成功，通常是网络中断，或者当前下载源上缺这些文件。\n" +
-            "可以换一个下载源再试一次，或者稍后重试。\n\n${th.message.orEmpty()}"
+        "整合包所需文件未能全部下载。请更换下载源或稍后重试。\n\n${th.message.orEmpty()}"
 
     is PackNotSupportedException -> when (th.reason) {
         UnsupportedPackReason.CorruptedArchive ->
