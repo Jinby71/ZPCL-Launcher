@@ -6,7 +6,7 @@
 - **本版本版本号**：1.5.4（versionCode 200076）
 - **上游项目**：Zalith Launcher 2 — <https://github.com/ZalithLauncher/ZalithLauncher2>
 - **上游版权**：Copyright (C) 2025 MovTery <movtery228@qq.com> and contributors
-- **本仓库**：<https://github.com/zuanxu53-hub/Zalith-PlainCraftLauncher>
+- **本仓库**：<https://github.com/zuanxu53-hub/ZPCL-Launcher>
 - **许可证**：GPLv3，全文见 [LICENSE](LICENSE)
 
 ## 一、这是修改版（GPLv3 §5(a)）
@@ -43,7 +43,7 @@
 
 本仓库**不存放安装包**（仓库与 Releases 均不含 APK），分发的 APK 由本项目官网提供。
 即便如此，GPLv3 §6 要求的「对应源代码」始终可以从本仓库完整取得：任何拿到安装包的人，
-都能在 <https://github.com/zuanxu53-hub/Zalith-PlainCraftLauncher> 取得同一版本的源码。
+都能在 <https://github.com/zuanxu53-hub/ZPCL-Launcher> 取得同一版本的源码。
 
 ## 四、第三方组件
 
@@ -61,6 +61,6 @@
 ## 六、问题反馈
 
 本修改版的问题**不要**提交给上游仓库。请在本仓库提 issue：
-<https://github.com/zuanxu53-hub/Zalith-PlainCraftLauncher/issues>
+<https://github.com/zuanxu53-hub/ZPCL-Launcher/issues>
 
 反馈时请附：版本号（设置 → 关于）、设备型号与 Android 版本、复现步骤、日志（设置 → 其他 → 导出日志）。

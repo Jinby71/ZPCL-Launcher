@@ -93,7 +93,7 @@ sealed interface LauncherUpgradeOperation {
  */
 private const val LATEST_VERSION = "latest_version_md.json"
 private const val LATEST_API_URL = "$URL_PROJECT_INFO/$LATEST_VERSION"
-private const val LATEST_API_CHINESE_URL = "https://raw.githubusercontent.com/zuanxu53-hub/Zalith-PlainCraftLauncher/main/$LATEST_VERSION"
+private const val LATEST_API_CHINESE_URL = "https://raw.githubusercontent.com/zuanxu53-hub/ZPCL-Launcher/main/$LATEST_VERSION"
 /**
  * 国内备用镜像：jsDelivr 的 GitHub 加速。
  *
@@ -101,12 +101,12 @@ private const val LATEST_API_CHINESE_URL = "https://raw.githubusercontent.com/zu
  * 只留它们两个时「检查更新」会直接失败（用户看到的就是「点了没反应」）。
  * jsDelivr 走的是自家 CDN，同一份文件能正常取到。
  */
-private const val LATEST_API_JSDELIVR_URL = "https://cdn.jsdelivr.net/gh/zuanxu53-hub/Zalith-PlainCraftLauncher@main/$LATEST_VERSION"
+private const val LATEST_API_JSDELIVR_URL = "https://cdn.jsdelivr.net/gh/zuanxu53-hub/ZPCL-Launcher@main/$LATEST_VERSION"
 
 /** 一次「检查更新」最多等这么久（毫秒）：超时就当失败，别让按钮一直转。 */
 private const val UPDATE_TIMEOUT_MS = 60_000L
 /** GitHub Releases 最新版本接口：动态拉取安装包资产，避免在 latest_version_md.json 里写死 files。 */
-private const val RELEASE_LATEST_URL = "https://api.github.com/repos/zuanxu53-hub/Zalith-PlainCraftLauncher/releases/latest"
+private const val RELEASE_LATEST_URL = "https://api.github.com/repos/zuanxu53-hub/ZPCL-Launcher/releases/latest"
 
 /**
  * 用于记录启动器更新 ViewModel
