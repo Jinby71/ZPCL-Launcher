@@ -765,7 +765,7 @@ private fun exportLaunchArgs(context: android.content.Context, version: Version)
                 appendLine("自定义 JVM 参数：${config.jvmArgs.ifBlank { "（空）" }}")
                 appendLine("自定义游戏参数：${config.gameArgs.ifBlank { "（空）" }}")
                 appendLine()
-                appendLine("注：Zalith 的实际启动命令由内核在启动时生成，")
+                appendLine("注：实际的启动命令由内核在启动时生成，")
                 appendLine("    完整内容见启动日志（概览页的日志或「更多 → 帮助」里的日志入口）。")
             }
         )

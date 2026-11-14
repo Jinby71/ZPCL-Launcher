@@ -309,7 +309,7 @@ fun PclSetupLaunchPage() {
         Spacer(Modifier.height(PclDimens.cardGap))
         Spacer(Modifier.height(PclDimens.cardGap))
         PclHint(
-            text = "以上设置项均直接读写 Zalith 的真实配置，修改后立即保存并生效。",
+            text = "以上设置项均直接读写启动器的真实配置，修改后立即保存并生效。",
             theme = PclHintTheme.Blue,
         )
         Spacer(Modifier.height(PclDimens.cardGap))
@@ -561,7 +561,7 @@ private fun PclMemoryCard(context: Context) {
             }
             Spacer(Modifier.height(6.dp))
             PclHint(
-                text = "本机可为启动器分配的内存上限为 $limitMb MB。设为「自动」时由 Zalith 按设备情况决定。",
+                text = "本机可为启动器分配的内存上限为 $limitMb MB。设为「自动」时由启动器按设备情况决定。",
                 theme = PclHintTheme.Blue,
             )
         }
@@ -672,7 +672,7 @@ fun PclSetupLinkPage() {
                 SettingCheck("启用陶瓦联机（Terracotta）", AllSettings.enableTerracotta)
                 Spacer(Modifier.height(6.dp))
                 PclHint(
-                    text = "陶瓦联机可在没有公网 IP 的情况下与好友一起游玩，由 Zalith 内置的联机模块提供。",
+                    text = "陶瓦联机可在没有公网 IP 的情况下与好友一起游玩，由启动器内置的联机模块提供。",
                     theme = PclHintTheme.Blue,
                 )
             }
@@ -929,7 +929,7 @@ fun PclSetupUiPage() {
                 }
                 PclHint(
                     text = "下面几张卡（背景图片 / 背景音乐 / 标题栏 / 主页 / 功能隐藏）都是真的在生效；" +
-                            "深色模式、语言、动画这类 Zalith 原生外观设置请到 Zalith 自己的设置里改。",
+                            "深色模式、语言、动画这类原生外观设置请到原生界面的设置里改。",
                     theme = PclHintTheme.Blue,
                 )
             }
@@ -998,7 +998,7 @@ fun PclSetupUiPage() {
                     )
                 }
                 PclHint(
-                    text = "「不透明度」与「背景模糊」用的是 Zalith 的同名设置项（`launcherBackgroundOpacity` / " +
+                    text = "「不透明度」与「背景模糊」用的是原生界面的同名设置项（`launcherBackgroundOpacity` / " +
                             "`backgroundBlur`），两边改的是同一个值。" +
                             "背景模糊是启动器自己实现的高斯模糊（分层卷积，CPU 预先算好再交给 GPU 放大），" +
                             "所以不依赖 Android 12 的实时模糊，各版本表现一致。\n" +
@@ -1396,7 +1396,7 @@ fun PclSetupSystemPage() {
                 SettingCheck("使用 PCL2 风格界面作为启动器主界面", AllSettings.usePcl2Ui)
                 Spacer(Modifier.height(6.dp))
                 PclHint(
-                    text = "关闭后重启启动器，主界面会切换回 Zalith 原生界面；" +
+                    text = "关闭后重启启动器，主界面会切换回原生界面；" +
                             "之后可以在原生界面的「设置 → 启动器 → 切换到 PCL2 界面」随时回到这里。" +
                             "（桌面只保留一个图标，按这个开关决定进哪个界面。）",
                     theme = PclHintTheme.Blue,

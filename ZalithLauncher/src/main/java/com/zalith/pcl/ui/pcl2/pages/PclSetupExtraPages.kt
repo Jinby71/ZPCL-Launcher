@@ -1250,7 +1250,7 @@ fun PclSetupJavaPage() {
 
                 Spacer(Modifier.height(8.dp))
                 PclHint(
-                    text = "「启动器自带」的运行库由 Zalith 自动下载，删除后下次启动游戏会重新下载；" +
+                    text = "「启动器自带」的运行库由启动器自动下载，删除后下次启动游戏会重新下载；" +
                             "自己导入的运行库可以放心删除。",
                     theme = PclHintTheme.Blue,
                 )

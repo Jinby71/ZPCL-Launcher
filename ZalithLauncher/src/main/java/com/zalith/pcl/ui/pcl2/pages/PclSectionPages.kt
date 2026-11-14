@@ -992,7 +992,7 @@ private fun PclDownloadInstallPage(nav: PclNavController) {
 
                         Spacer(Modifier.height(10.dp))
                         PclText(
-                            text = "LiteLoader / OptiFabric 在 Zalith 后端没有安装实现，因此未列出；" +
+                            text = "LiteLoader / OptiFabric 在本启动器后端没有安装实现，因此未列出；" +
                                 "所有加载器版本列表均实时来自官方/镜像源。",
                             fontSize = 12,
                             color = p.gray2,
