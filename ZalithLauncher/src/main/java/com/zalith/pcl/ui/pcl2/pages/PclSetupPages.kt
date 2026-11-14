@@ -463,27 +463,9 @@ private fun PclRenderingCard() {
                             PclHintHost.push("已切换音频缓冲，下次启动游戏生效。", PclHintTheme.Green)
                         },
                     )
-                    Spacer(Modifier.height(8.dp))
-                    PclHint(
-                        text = "声音比画面慢半拍时选「低延迟」（缓冲约 21ms）；" +
-                                "出现爆音、断音就退回「均衡」或「稳定」。" +
-                                "这一项改的是游戏的 OpenAL 缓冲，下次启动游戏生效。",
-                        theme = PclHintTheme.Blue,
-                    )
                 }
             }
             Spacer(Modifier.height(4.dp))
-            PclHint(
-                text = "渲染器与驱动列表来自设备上实际安装的插件，未安装插件时仅显示内置 Turnip 驱动。",
-                theme = PclHintTheme.Blue,
-            )
-            PclHint(
-                text = "渲染器只按上面选定的那个启动，不会再在启动时自动替换。" +
-                        "整合包里装了 Sodium、Iris 这类需要桌面 OpenGL 3.3+ 的模组时，" +
-                        "请手动选 Krypton Wrapper（Koopers Zink / 原生 GLES）；" +
-                        "选了 GL4ES 系的渲染器会卡在加载界面且不报错。",
-                theme = PclHintTheme.Blue,
-            )
         }
     }
 
@@ -559,11 +541,6 @@ private fun PclMemoryCard(context: Context) {
                     )
                 }
             }
-            Spacer(Modifier.height(6.dp))
-            PclHint(
-                text = "本机可为启动器分配的内存上限为 $limitMb MB。设为「自动」时由启动器按设备情况决定。",
-                theme = PclHintTheme.Blue,
-            )
         }
     }
 }
@@ -589,13 +566,6 @@ private fun PclJavaCard() {
                 labelOf = { names[it] ?: it.ifEmpty { PclStrings.LangPageSetupLaunchLaunchJavaAutoChoice } },
                 onSelect = { AllSettings.javaRuntime.save(it) },
             )
-            if (runtimes.isEmpty()) {
-                Spacer(Modifier.height(4.dp))
-                PclHint(
-                    text = "尚未在设备上检测到任何 Java 运行库，可在此页之外下载安装后再回到这里选择。",
-                    theme = PclHintTheme.Yellow,
-                )
-            }
         }
     }
 }
@@ -670,11 +640,6 @@ fun PclSetupLinkPage() {
         PclCard( modifier = Modifier.fillMaxWidth(),title = PclStrings.LangPageSetupLinkConnectionOptions) {
             Column {
                 SettingCheck("启用陶瓦联机（Terracotta）", AllSettings.enableTerracotta)
-                Spacer(Modifier.height(6.dp))
-                PclHint(
-                    text = "陶瓦联机可在没有公网 IP 的情况下与好友一起游玩，由启动器内置的联机模块提供。",
-                    theme = PclHintTheme.Blue,
-                )
             }
         }
         Spacer(Modifier.height(PclDimens.cardGap))
@@ -1394,13 +1359,6 @@ fun PclSetupSystemPage() {
         PclCard( modifier = Modifier.fillMaxWidth(),title = "界面风格") {
             Column {
                 SettingCheck("使用 PCL2 风格界面作为启动器主界面", AllSettings.usePcl2Ui)
-                Spacer(Modifier.height(6.dp))
-                PclHint(
-                    text = "关闭后重启启动器，主界面会切换回原生界面；" +
-                            "之后可以在原生界面的「设置 → 启动器 → 切换到 PCL2 界面」随时回到这里。" +
-                            "（桌面只保留一个图标，按这个开关决定进哪个界面。）",
-                    theme = PclHintTheme.Blue,
-                )
             }
         }
 
@@ -1428,16 +1386,6 @@ fun PclSetupSystemPage() {
                     unit = AllSettings.downloadThreads,
                     min = 1,
                     max = 128,
-                )
-                Spacer(Modifier.height(6.dp))
-                PclHint(
-                    text = "\u201c自动\u201d会按当前网络环境选择初始下载源，并在失败时自适应换源。",
-                    theme = PclHintTheme.Blue,
-                )
-                PclHint(
-                    text = "同时下载的文件数，默认 32（PCL2 同款滑条）。网络差或设备较慢时调小，"
-                            + "能减少超时和失败重试；网络快、机器好可以调大。改完下一次下载生效。",
-                    theme = PclHintTheme.Blue,
                 )
             }
         }

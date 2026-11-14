@@ -2075,17 +2075,6 @@ fun PclHomeRight(nav: PclNavController) {
     }
 
     PclContent {
-        // PanHint（PCL 首页的固定提示条）
-        var hintClosed by remember { mutableStateOf(false) }
-        if (!hintClosed) {
-            PclHint(
-                text = "Minecraft 已安装的版本会显示在左侧；未登录时可以先用「离线账户」启动。",
-                theme = PclHintTheme.Blue,
-                onClose = { hintClosed = true },
-            )
-            Spacer(Modifier.height(15.dp))
-        }
-
         // 快速进入服务器：读取当前实例的 servers.dat，点一行直接带 quickPlay 启动。
         PclCard(modifier = Modifier.fillMaxWidth(), title = "快速进入服务器") {
             Column {
