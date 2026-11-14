@@ -156,49 +156,41 @@ private fun PclTermsContent(onAccept: () -> Unit) {
                 .verticalScroll(scroll)
                 .padding(horizontal = 22.dp, vertical = 14.dp),
         ) {
-            PclSection("一、这是什么")
+            PclSection("一、项目性质")
             PclBody(
-                "ZPCL Launcher 是 Zalith Launcher 2 的**非官方修改版**，遵循 GNU 通用公共许可证第 3 版" +
-                    "（GPLv3）发布。它与 Zalith Launcher 官方及其作者没有隶属关系，也未获得其背书；" +
-                    "启动核心沿用 Zalith Launcher 2，界面版式参考 Plain Craft Launcher 2（PCL2）。",
-            )
-            PclBody(
-                "本程序是一个 Minecraft: Java Edition 的启动器，负责下载游戏文件、管理版本与实例、" +
-                    "启动游戏。它本身**不包含** Minecraft 游戏本体。",
+                "本程序为 Zalith Launcher 2 的非官方修改版，依据 GNU 通用公共许可证第 3 版（GPLv3）发布。" +
+                    "与 Zalith Launcher 官方及其作者无隶属关系，亦未获其背书。启动核心沿用 Zalith Launcher 2，" +
+                    "界面版式参考 Plain Craft Launcher 2。本程序不含 Minecraft 游戏本体。",
             )
 
-            PclSection("二、你需要自己准备")
-            PclBody("· 一个合法持有的 Minecraft 账号（微软账号）；离线登录仅用于本地测试。")
-            PclBody("· 足够的存储空间与设备性能：游戏本体、Java 运行环境、Mod 与整合包都会占用空间。")
-            PclBody("· 网络环境：下载依赖 Modrinth、CurseForge、BMCLAPI 等第三方服务，无法联网时功能会受限。")
+            PclSection("二、使用条件")
+            PclBody("使用者须自行持有合法的 Minecraft 账号，并自行准备运行所需的存储空间与网络环境。")
+            PclBody("下载功能依赖 Modrinth、CurseForge、BMCLAPI 等第三方服务；第三方服务不可用时相关功能受限。")
 
-            PclSection("三、不提供什么")
-            PclBody("· 不提供游戏本体、账号、Mod、整合包或任何受版权保护的内容。")
-            PclBody("· 不保证任意 Mod / 整合包 / 光影 / 渲染器都能在本启动器里正常运行 —— 兼容性取决于它们自身。")
-            PclBody("· 不提供任何形式的账号找回、封禁申诉或商业支持。")
+            PclSection("三、不提供的内容")
+            PclBody("不提供游戏本体、账号、Mod、整合包及其他受版权保护的内容。")
+            PclBody("不对第三方资源的可用性、兼容性与安全性作出保证，亦不提供账号找回、申诉或商业支持。")
 
             PclSection("四、数据与隐私")
-            PclBody("· 设置、实例、账号凭据保存在本机应用私有目录，不会上传到本项目作者的服务器。")
-            PclBody("· 下载资源、检查更新时，请求会直接发往对应的第三方服务，其隐私政策由该服务方负责。")
-            PclBody("· 卸载应用会一并清除本地设置与实例记录；需要保留的存档请自行备份。")
+            PclBody("设置、实例与账号凭据保存在本机应用私有目录，不上传至本项目作者。")
+            PclBody("下载与更新请求直接发往对应第三方服务，其数据处理适用该服务方的隐私政策。")
+            PclBody("卸载应用将清除本地设置与实例记录，需要保留的存档请自行备份。")
 
             PclSection("五、许可与源代码")
             PclBody(
-                "· 本程序以 GPLv3 发布，完整许可见应用「关于」页的「许可原文」。" +
-                    "依据 GPLv3 第 6 条，与安装包对应的完整源码可从「关于」页的「源代码与许可」入口取得。",
+                "本程序依据 GPLv3 发布，许可全文见「关于」页的「许可原文」。依据 GPLv3 第 6 条，" +
+                    "与安装包对应的完整源代码可从「关于」页的「源代码与许可」取得。",
             )
             PclBody(
-                "· 修改与再分发须继续遵循 GPLv3，并遵守上游在 GPLv3 第 7 条下附加的条款：" +
-                    "名称不得包含上游原名或其缩写，且须以明显方式标注为修改版。",
+                "修改与再分发须继续遵循 GPLv3，并遵守上游依 GPLv3 第 7 条附加的名称与标注要求。",
             )
 
             PclSection("六、免责声明")
             PclBody(
-                "本程序按「现状」提供，不附带任何明示或默示的担保，包括但不限于适销性与特定用途适用性。" +
-                    "在法律允许的最大范围内，作者与贡献者不对使用或无法使用本程序造成的任何损失承担责任，" +
-                    "包括存档损坏、账号异常、设备故障等。",
+                "本程序按「现状」提供，不附带任何明示或默示担保。在法律允许的最大范围内，" +
+                    "作者与贡献者不对使用或无法使用本程序所造成的任何损失承担责任。",
             )
-            PclBody("继续使用即表示你理解并接受以上全部内容。若不同意，请点击下方「退出」并卸载本程序。")
+            PclBody("点击「同意」即表示已阅读并接受上述全部内容；如不同意，请退出并卸载本程序。")
 
             Spacer(modifier = Modifier.height(20.dp))
             PclText(text = "—— 以上为全部内容 ——", color = p.gray3, fontSize = 12)

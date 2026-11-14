@@ -1002,8 +1002,8 @@
     <string name="settings_launcher_language">語言</string>
     <string name="settings_launcher_full_screen_title">頁面全螢幕化</string>
     <string name="settings_launcher_full_screen_summary">使啟動器的頁面全螢幕化，忽略瀏海螢幕、挖孔螢幕等螢幕的安全區域</string>
-    <string name="settings_launcher_switch_pcl2_title">切換到 PCL2 介面</string>
-    <string name="settings_launcher_switch_pcl2_summary">立即進入 PCL2 風格介面，並把啟動器主介面設為 PCL2 介面</string>
+    <string name="settings_launcher_switch_pcl2_title">切換介面</string>
+    <string name="settings_launcher_switch_pcl2_summary">在 PCL2 介面與原生介面之間切換</string>
     <string name="settings_launcher_animate_speed_title">動畫倍速</string>
     <string name="settings_launcher_animate_speed_summary">調整啟動器動畫播放時長的倍速</string>
     <string name="settings_launcher_swap_animate_type_title">頁面切換動畫</string>

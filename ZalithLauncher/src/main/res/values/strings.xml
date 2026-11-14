@@ -1100,8 +1100,8 @@
     <string name="settings_launcher_language">Language</string>
     <string name="settings_launcher_full_screen_title">Fullscreen Mode</string>
     <string name="settings_launcher_full_screen_summary">Make the launcher pages fullscreen, ignoring safe areas like notches and punch-holes</string>
-    <string name="settings_launcher_switch_pcl2_title">Switch to PCL2 UI</string>
-    <string name="settings_launcher_switch_pcl2_summary">Open the PCL2-style launcher interface now, and make it the main interface</string>
+    <string name="settings_launcher_switch_pcl2_title">Switch UI</string>
+    <string name="settings_launcher_switch_pcl2_summary">Switch between the PCL2 interface and the native interface</string>
     <string name="settings_launcher_animate_speed_title">Animation Speed</string>
     <string name="settings_launcher_animate_speed_summary">Adjust the playback speed multiplier for launcher animations</string>
     <string name="settings_launcher_animate_extent_title">Animation Intensity</string>

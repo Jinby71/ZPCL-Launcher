@@ -340,7 +340,9 @@ private fun <E: TitledNavKey> TopBar(
                 if (parent == null) {
                     if (festivals.isEmpty()) {
                         Text(
-                            text = BuildKeys.LAUNCHER_IDENTIFIER,
+                            // 顶栏显示对外名称（ZPCL），不是内部标识符 ——
+                            // 后者是 `ZalithLauncher`，只用于数据目录与 MMKV id。
+                            text = BuildKeys.LAUNCHER_SHORT_NAME,
                             style = style,
                             softWrap = softWarp,
                             maxLines = maxLines

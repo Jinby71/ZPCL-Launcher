@@ -138,7 +138,7 @@ object AllSettings : SettingsRegistry() {
     /**
      * 版本自定义信息
      */
-    val versionCustomInfo = stringSetting("versionCustomInfo", "${BuildKeys.LAUNCHER_IDENTIFIER}[zl_version]")
+    val versionCustomInfo = stringSetting("versionCustomInfo", "${BuildKeys.LAUNCHER_SHORT_NAME}[zl_version]")
 
     /**
      * 启动器的Java环境
@@ -538,12 +538,31 @@ object AllSettings : SettingsRegistry() {
      */
     private val threadsDefault32Migrated = boolSetting("threadsDefault32Migrated", false)
 
+    /**
+     * 「版本自定义信息」的默认值换过一次。
+     *
+     * 原默认值拼的是内部标识符，于是版本设置页会把这个名字（`ZalithLauncher[zl_version]`）
+     * 原样显示出来；现在默认改用对外短名 `ZPCL[zl_version]`。
+     * 只迁移**仍等于旧默认值**的存档，用户自己改过的内容一律不动。
+     */
+    private val versionCustomInfoMigrated = boolSetting("versionCustomInfoMigrated", false)
+
     init {
         runCatching {
             if (!threadsDefault32Migrated.getValue()) {
                 val stored = launcherMMKV().getInt("downloadThreads", -1)
                 if (stored == 16) launcherMMKV().putInt("downloadThreads", 32)
                 threadsDefault32Migrated.save(true)
+            }
+        }
+        runCatching {
+            if (!versionCustomInfoMigrated.getValue()) {
+                val oldDefault = "${BuildKeys.LAUNCHER_IDENTIFIER}[zl_version]"
+                val newDefault = "${BuildKeys.LAUNCHER_SHORT_NAME}[zl_version]"
+                if (launcherMMKV().getString("versionCustomInfo", null) == oldDefault) {
+                    launcherMMKV().putString("versionCustomInfo", newDefault)
+                }
+                versionCustomInfoMigrated.save(true)
             }
         }
     }
