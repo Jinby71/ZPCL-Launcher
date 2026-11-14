@@ -33,8 +33,6 @@ val launcherUrl = project.findProperty("url_home") as? String ?: error("The \"ur
 val launcherVersionCode = (project.findProperty("launcher_version_code") as? String)?.toIntOrNull() ?: error("The \"launcher_version_code\" property is not set as an integer in gradle.properties.")
 val launcherVersionName = project.findProperty("launcher_version_name") as? String ?: error("The \"launcher_version_name\" property is not set in gradle.properties.")
 
-val defaultStorePassword = project.findProperty("default_store_password") as? String ?: error("The \"default_store_password\" property is not set in gradle.properties.")
-val defaultKeyPassword = project.findProperty("default_key_password") as? String ?: error("The \"default_key_password\" property is not set in gradle.properties.")
 val defaultCurseForgeApiKey = project.findProperty("curseforge_api_key") as? String
 
 val projectArch: String = System.getProperty("arch", "all")
@@ -65,10 +63,17 @@ android {
     }
 
     signingConfigs {
+        // 2026-11 换了新密钥：旧的 `zalith_launcher.jks` 曾随源码提交进公开仓库
+        // （连同 gradle.properties 里的明文密码），等于私钥已公开 —— 任何人都能签出
+        // 一个「官方更新包」。旧密钥作废，新密钥 `zpcl_release.jks` 只在本机，
+        // 密码放 `.store_password.txt` / `.key_password.txt`（已 gitignore）。
+        //
+        // 换签名后无法覆盖旧签名的安装包，必须卸载重装；换包名（com.zpcl.launcher）时
+        // 一并换掉正好把这次代价省了。
         create("releaseBuild") {
-            storeFile = file("zalith_launcher.jks")
+            storeFile = file("zpcl_release.jks")
             storePassword = getKeyFromLocal("STORE_PASSWORD", ".store_password.txt")
-            keyAlias = "movtery_zalith"
+            keyAlias = "zpcl"
             keyPassword = getKeyFromLocal("KEY_PASSWORD", ".key_password.txt")
             //同时启用 v1(JAR) / v2 / v3 签名，提升对旧版系统安装器的兼容性
             enableV1Signing = true
@@ -76,10 +81,11 @@ android {
             enableV3Signing = true
         }
         create("debugBuild") {
-            storeFile = file("zalith_launcher_debug.jks")
-            storePassword = defaultStorePassword
-            keyAlias = "movtery_zalith_debug"
-            keyPassword = defaultKeyPassword
+            // debug 也走新密钥：旧 debug 私钥同样在公开仓库里，没必要留着。
+            storeFile = file("zpcl_release.jks")
+            storePassword = getKeyFromLocal("STORE_PASSWORD", ".store_password.txt")
+            keyAlias = "zpcl"
+            keyPassword = getKeyFromLocal("KEY_PASSWORD", ".key_password.txt")
             //同时启用 v1(JAR) / v2 / v3 签名，提升对旧版系统安装器的兼容性
             enableV1Signing = true
             enableV2Signing = true
